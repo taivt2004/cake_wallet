@@ -71,6 +71,35 @@ Sau khi có Master Key, App dùng nó để khóa dữ liệu tài sản (Seed P
     *   Đường dẫn file được tính toán dựa trên Hệ điều hành (Sandbox).
     *   **Code:** [cw_core/lib/pathForWallet.dart](cw_core/lib/pathForWallet.dart) xác định vị trí đặt file.
 
+### 1.3. Cơ Chế Passphrase (Optional Password)
+
+Đây là tính năng bảo mật nâng cao, cho phép user thêm một "lớp mật khẩu thứ 13" vào 12/24 từ khóa khôi phục (Seed Phrase).
+
+#### A. Nghiệp vụ (Business Logic)
+*   **Bản chất:** Passphrase hoạt động như một "gia vị" (salt) trộn vào Seed Phrase để tạo ra ví.
+    *   `Seed Phrase` + `(Không có Passphrase)` = **Ví A** (Ví mặc định)
+    *   `Seed Phrase` + `Passphrase "BiMat"` = **Ví B** (Ví hoàn toàn khác)
+*   **Quy tắc Sống còn:**
+    *   Nếu dùng Passphrase, user **BẮT BUỘC** phải nhớ chính xác cả Seed Phrase lẫn Passphrase.
+    *   Nhập sai/không nhập Passphrase => **Mở ra ví rỗng (0đ)**. Ứng dụng sẽ không báo lỗi "Sai mật khẩu" vì nó coi đó là một ví hợp lệ khác.
+*   **Lợi ích Bảo mật:** Nếu Hacker có được 12 từ khóa của bạn nhưng không biết Passphrase, họ sẽ mở ra Ví A (ví rỗng hoặc ví bẫy) chứ không thể truy cập vào Ví B (ví chính chứa tiền).
+
+#### B. Triển khai Kỹ thuật (Technical Implementation)
+Cake xử lý Passphrase như một phần của dữ liệu nhạy cảm (Mức độ 1) và lưu trữ cùng cấp độ bảo mật với Seed Phrase.
+
+*   **Quy trình Tạo/Khôi phục:**
+    *   Passphrase được đưa trực tiếp vào hàm dẫn xuất khóa (Key Derivation Function - KDF) cùng với Seed Phrase để sinh ra Master Private Key.
+    *   **Code Reference:**
+        *   **Bitcoin/Litecoin (BIP39):** Hàm `mnemonicToSeed` trong [cw_bitcoin/lib/bitcoin_wallet.dart](cw_bitcoin/lib/bitcoin_wallet.dart).
+        *   **Monero:** Hàm `restoreWalletFromSeedSync` trong [cw_monero/lib/monero_wallet_service.dart](cw_monero/lib/monero_wallet_service.dart).
+
+*   **Lưu Trữ (Storage):**
+    *   Để tiện dụng (User không phải nhập lại mỗi lần mở app), Passphrase được **LƯU LẠI** trong file dữ liệu ví (`.keys`).
+    *   **Bảo mật:** Nó nằm trong cấu trúc `WalletKeysData` và được **MÃ HÓA** bằng Master Key của thiết bị (tương tự như Seed Phrase).
+    *   **Code Reference:**
+        *   Cấu trúc dữ liệu: [cw_core/lib/wallet_keys_file.dart](cw_core/lib/wallet_keys_file.dart) (Class `WalletKeysData`).
+        *   Quy trình mã hóa: [cw_core/lib/wallet_keys_file.dart](cw_core/lib/wallet_keys_file.dart) (Hàm `toJSON` và `saveKeysFile`).
+
 #### C. Quy trình 3: Chi tiết từng loại Coin (Implementation)
 
 Mỗi loại coin sẽ lưu những gì vào trong file `.keys` đó?
@@ -81,7 +110,7 @@ Mỗi loại coin sẽ lưu những gì vào trong file `.keys` đó?
     *   **Xem tại:** [cw_evm/lib/evm_chain_wallet.dart](cw_evm/lib/evm_chain_wallet.dart).
 *   **Monero:** Lưu phức tạp hơn (Binary Struct), gồm `spend_key` và `view_key`.
 
-### 1.3. Luồng chạy thực tế (Mức độ 1)
+### 1.4. Luồng chạy thực tế (Mức độ 1)
 
 #### A. Tạo ví mới (Create)
 
@@ -100,7 +129,7 @@ Mỗi loại coin sẽ lưu những gì vào trong file `.keys` đó?
     *   [lib/src/screens/seed/pre_seed_page.dart](lib/src/screens/seed/pre_seed_page.dart) → `Routes.seed`
     *   [lib/src/screens/seed/wallet_seed_page.dart](lib/src/screens/seed/wallet_seed_page.dart) (hiển thị seed)
 
-#### B. Mở ví (Open)     
+#### B. Mở ví (Open) 
 
 *   Lấy `walletPassword` từ Secure Storage:
     *   [lib/core/key_service.dart](lib/core/key_service.dart) → `KeyService.getWalletPassword()`
@@ -110,7 +139,7 @@ Mỗi loại coin sẽ lưu những gì vào trong file `.keys` đó?
 *   Init runtime data (địa chỉ, balance, history):
     *   Tùy chain, thường gọi `wallet.init()` (ví dụ Electrum wallet init sẽ load `transactionHistory.init()` và addresses)
 
-### 1.4. Cấu trúc File Ví & Mô hình Bảo mật 3 Lớp (Deep Dive)
+### 1.5. Cấu trúc File Ví & Mô hình Bảo mật 3 Lớp (Deep Dive)
 
 Để trả lời câu hỏi: *"File ví chứa những gì và được bảo vệ như thế nào?"*, hãy hình dung mô hình **Két sắt trong Két sắt**.
 
@@ -229,7 +258,7 @@ Sử dụng `path_provider` để đảm bảo file luôn được lưu vào vù
 
 ## Tổng kết bài học (Takeaways)
 
-1.  **Encryption Everywhere:** Không chỉ Seed Phrase, hãy mã hóa cả dữ liệu Transaction/History nếu nó chứa thông tin nhạy cảm.
-2.  **Random Master Key:** Đừng dùng password người dùng làm key mã hóa. Hãy sinh Random Key (512-bit), lưu nó vào Secure Storage, và dùng Password/Biometric để bảo vệ quyền truy cập vào Secure Storage đó.
-3.  **Key Derivation:** Với các module mở rộng (Chat, Social), hãy phái sinh key con từ Master Key.
+1.  **Encryption Everywhere:** Không chỉ Seed Phrase, nên mã hóa cả dữ liệu Transaction/History nếu nó chứa thông tin nhạy cảm.
+2.  **Random Master Key:** Không dùng password người dùng làm key mã hóa. Sinh Random Key (512-bit), lưu nó vào Secure Storage, và dùng Password/Biometric để bảo vệ quyền truy cập vào Secure Storage đó.
+3.  **Key Derivation:** Với các module mở rộng (Chat, Social), phái sinh key con từ Master Key.
 4.  **Cross-Platform:** Cấu hình kỹ `AndroidOptions` cho Secure Storage, đừng dùng default settings.
