@@ -6,6 +6,7 @@ Trong self-custody, “create” = **tạo key material ở client** (offline), 
 *   **Bước 1 (Offline - trong App):** Sinh hoặc import **seed phrase / private key** trong RAM.
 *   **Bước 2 (Offline - trong App):** Derive ra các dữ liệu public để sử dụng:
     *   address (địa chỉ nhận tiền)
+        *   *(Lưu ý Stellar: Cần 1 XLM để kích hoạt (Base Reserve) - BE thường hỗ trợ check trạng thái này)*
     *   public key
     *   derivation path / xpub (tuỳ chain)
 *   **Bước 3 (Local - trên thiết bị):** Lưu key material vào storage cục bộ theo dạng **đã mã hoá**.
@@ -84,10 +85,15 @@ Tưởng tượng giống như **Tài khoản Ngân hàng**.
 *   **Privacy:** Để tăng tính riêng tư, mỗi khi nhận tiền, ví thường sinh ra một địa chỉ mới (nhưng vẫn thuộc về Seed Phrase đó).
 *   **Restore:** Ví phải quét (scan) blockchain trên danh sách các địa chỉ con để tìm ra UTXO nào thuộc về mình. Đây là lý do restore ví Bitcoin thường lâu hơn ví Ethereum.
 
-### 4.3. Ngoại lệ: Một số hệ cần "giao dịch kích hoạt"
-Một số chain (Ripple, Stellar, Polkadot) yêu cầu ví phải có **số dư tối thiểu** (Minimum Balance) mới được coi là tồn tại trên Ledger.
+### 4.3. Ngoại lệ: Một số hệ cần "giao dịch kích hoạt" (Stellar, Ripple, Polkadot)
+Một số chain yêu cầu ví phải có **số dư tối thiểu** (Minimum Balance/Base Reserve) mới được coi là tồn tại trên Ledger.
 
-*   Tuy nhiên, việc này **không thay đổi bản chất**: App vẫn sinh key offline.
+*   **Stellar (XLM):**
+    *   **Base Reserve:** Cần tối thiểu **1 XLM** để kích hoạt tài khoản.
+    *   **Trustlines:** Mỗi loại token (USDC, EURT...) cần thêm **0.5 XLM** dự trữ.
+    *   **Vai trò BE:** Đây là lý do BE thường phải tham gia: để kiểm tra xem tài khoản đã kích hoạt chưa, hoặc thậm chí **tài trợ phí kích hoạt** (faucet) cho user mới để cải thiện UX.
+
+*   Tuy nhiên, việc này **không thay đổi bản chất Self-Custody**: App vẫn sinh key offline.
 *   Việc "kích hoạt" chỉ xảy ra khi **có người gửi tiền vào** (giao dịch on-chain), không phải do App gọi API "đăng ký tài khoản" với server.
 
 ## 5. Đối chiếu với Cake Wallet (điểm bám code)
