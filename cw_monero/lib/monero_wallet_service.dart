@@ -415,7 +415,7 @@ class MoneroWalletService extends WalletService<
         key: "cakewallet.seed.bip39", value: mnemonic);
     currentWallet!.setCacheAttribute(
         key: "cakewallet.passphrase", value: passphrase ?? '');
-
+    
     currentWallet!.store();
 
     final wallet = MoneroWallet(

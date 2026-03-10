@@ -64,7 +64,7 @@ class ERC20 extends web3.GeneratedContract {
     final response = await read(function, params, atBlock);
     return (response[0] as BigInt);
   }
-
+  
   /// Returns the decimal precision of the token.
   ///
   /// The optional [atBlock] parameter can be used to view historical data. When

@@ -160,10 +160,10 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   mocktail: ^1.0.4
-  build_runner: ^2.4.15
+  build_runner: ^2.4.13
   logging: ^1.2.0
   mobx_codegen: ^2.1.1
-  build_resolvers: ^2.4.4
+  build_resolvers: ^2.4.2
   hive_generator: ^2.0.1
   # flutter_launcher_icons: ^0.11.0
   # check flutter_launcher_icons for usage
@@ -197,6 +197,7 @@ dependency_overrides:
     git:
       url: https://github.com/konstantinullrich/ledger-usb-plus
       ref: dad482c847c0d0eedceabbb40d3478e64b65e630
+  mockito: 5.4.4
   socks5_proxy:
     git:
       url: https://github.com/LacticWhale/socks_dart.git

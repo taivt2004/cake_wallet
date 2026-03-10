@@ -21,7 +21,7 @@ class KeyService {
 
     await _secureStorage.write(key: key, value: encodedPassword);
   }
-
+  
   Future<void> deleteWalletPassword({required String walletName}) async {
     final key =
         generateStoreKeyFor(key: SecretStoreKey.moneroWalletPassword, walletName: walletName);

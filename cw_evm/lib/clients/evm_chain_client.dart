@@ -130,32 +130,13 @@ class EVMChainClient {
 
   //! Common methods across all child classes
 
-  bool connect(Node node) {
-    try {
-      Uri? rpcUri;
-      bool isModifiedNodeUri = false;
-
-      if (node.uriRaw.contains('nownodes.io')) {
-        isModifiedNodeUri = true;
-        String nowNodeApiKey = secrets.nowNodesApiKey;
-
-        if (nowNodeApiKey.isEmpty) {
-          printV('NowNodes API key is empty, cannot connect to ${node.uriRaw}');
-          return false;
-        }
-
-        rpcUri = Uri.https(node.uriRaw, '/$nowNodeApiKey');
-      }
-
-      _client = Web3Client(isModifiedNodeUri ? rpcUri!.toString() : node.uri.toString(), client);
-
-      return true;
+ 
     } catch (e) {
       printV('Error connecting to node ${node.uriRaw}: ${e.toString()}');
       return false;
     }
   }
-
+  
   void setListeners(EthereumAddress userAddress, Function() onNewTransaction) async {
     // _client?.pendingTransactions().listen((transactionHash) async {
     //   final transaction = await _client!.getTransactionByHash(transactionHash);

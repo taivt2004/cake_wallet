@@ -13,9 +13,9 @@ Trong self-custody, “create” = **tạo key material ở client** (offline), 
 Điểm quan trọng: các bước trên **không cần** gọi node/RPC. Vì vậy user có thể tạo ví khi offline.
 
 *   **Code reference (Cake Wallet):**
-    *   Tạo ví + sinh/lưu `walletPassword` (master key mã hoá file ví) vào Secure Storage: [wallet_creation_service.dart:L51-L71](lib/core/wallet_creation_service.dart#L51-L71)
-    *   Lưu `walletPassword` qua `KeyService` (encode + write Secure Storage): [key_service.dart:L10-L23](lib/core/key_service.dart#L10-L23)
-    *   Secure Storage wrapper (Keychain/EncryptedSharedPreferences): [secure_storage.dart:L18-L41](lib/core/secure_storage.dart#L18-L41)
+    *   Tạo ví + sinh/lưu `walletPassword` (master key mã hoá file ví) vào Secure Storage: [wallet_creation_service.dart](lib/core/wallet_creation_service.dart)
+    *   Lưu `walletPassword` qua `KeyService` (encode + write Secure Storage): [key_service.dart](lib/core/key_service.dart)
+    *   Secure Storage wrapper (Keychain/EncryptedSharedPreferences): [secure_storage.dart](lib/core/secure_storage.dart)
 
 ## 2. “Restore wallet/account” thực sự là gì?
 Restore không phải “tạo lại account trên blockchain”, mà là **khôi phục key ở client + sync lại trạng thái**.
@@ -32,9 +32,9 @@ Restore thường **không ghi** gì lên chain. Nó chủ yếu là “đọc/s
 *   **Khi user gửi giao dịch:** app tạo raw tx, **ký bằng private key ở client**, rồi mới broadcast qua node/relayer.
 
 *   **Code reference (Cake Wallet):**
-    *   Tạo credentials từ seed/private key (restore modes): [wallet_restore_view_model.dart:L118-L315](lib/view_model/wallet_restore_view_model.dart#L118-L315)
-    *   Gọi restore từ seed/keys về `WalletCreationService`: [wallet_restore_view_model.dart:L358-L364](lib/view_model/wallet_restore_view_model.dart#L358-L364)
-    *   Restore từ seed + lưu `walletPassword` vào Secure Storage: [wallet_creation_service.dart:L118-L135](lib/core/wallet_creation_service.dart#L118-L135)
+    *   Tạo credentials từ seed/private key (restore modes): [wallet_restore_view_model.dart](lib/view_model/wallet_restore_view_model.dart)
+    *   Gọi restore từ seed/keys về `WalletCreationService`: [wallet_restore_view_model.dart](lib/view_model/wallet_restore_view_model.dart)
+    *   Restore từ seed + lưu `walletPassword` vào Secure Storage: [wallet_creation_service.dart](lib/core/wallet_creation_service.dart)
 
 ## 3. Front-end/Back-end làm gì?
 ### 3.1. Front-end (App) — phần bắt buộc trong self-custody
@@ -98,8 +98,8 @@ Cake Wallet triển khai đúng mô hình self-custody: tạo/restore diễn ra 
     *   `create(...)`: tạo walletPassword, lưu Secure Storage, gọi `WalletService.create(...)`.
     *   `restoreFromSeed(...)`: tương tự, gọi `WalletService.restoreFromSeed(...)`.
 *   ViewModel tạo credentials và gọi service:
-    *   Create: [lib/view_model/wallet_new_vm.dart](lib/view_model/wallet_new_vm.dart#L56-L161)
-    *   Restore: [lib/view_model/wallet_restore_view_model.dart](lib/view_model/wallet_restore_view_model.dart#L118-L228)
+    *   Create: [wallet_new_vm.dart](lib/view_model/wallet_new_vm.dart)
+    *   Restore: [wallet_restore_view_model.dart](lib/view_model/wallet_restore_view_model.dart)
 
 ### 5.2. Luồng “chạm blockchain” (sync/broadcast)
 *   Nhóm BTC/LTC: query/broadcast qua Electrum protocol: [cw_bitcoin/lib/electrum.dart](cw_bitcoin/lib/electrum.dart)

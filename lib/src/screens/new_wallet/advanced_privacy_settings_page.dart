@@ -71,7 +71,7 @@ class _AdvancedPrivacySettingsBody extends StatefulWidget {
   final AdvancedPrivacySettingsViewModel privacySettingsViewModel;
   final NodeCreateOrEditViewModel nodeViewModel;
   final SeedSettingsViewModel seedTypeViewModel;
-
+  
   final bool isFromRestore;
   final bool isChildWallet;
   final bool useTestnet;

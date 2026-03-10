@@ -5,7 +5,7 @@ const ivEncodedStringLength = 12;
 String generateKey() {
   final key = encrypt.Key.fromSecureRandom(512);
   final iv = encrypt.IV.fromSecureRandom(8);
-
+                  
   return key.base64 + iv.base64;
 }
 

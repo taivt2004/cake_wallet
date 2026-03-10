@@ -497,7 +497,7 @@ abstract class MoneroWalletBase extends WalletBase<MoneroBalance,
 
     return 0;
   }
-
+  
   @override
   Future<void> save() async {
     await walletAddresses.updateUsedSubaddress();

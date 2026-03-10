@@ -191,39 +191,103 @@ ln -s $ICON_1024_1x_PATH $DEST_DIR_PATH/Icon-App-1024x1024@1x.png
 #TODO once the new monero.com icons are out remove if statement
 if [ $APP_IOS_TYPE = "cakewallet" ]; then
 
-ln -s $ICON_DARK_20_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-20x20@2x.png
-ln -s $ICON_DARK_20_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-20x20@3x.png
-ln -s $ICON_DARK_29_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-29x29@2x.png
-ln -s $ICON_DARK_29_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-29x29@3x.png
-ln -s $ICON_DARK_38_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-38x38@2x.png
-ln -s $ICON_DARK_38_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-38x38@3x.png
-ln -s $ICON_DARK_40_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-40x40@2x.png
-ln -s $ICON_DARK_40_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-40x40@3x.png
-ln -s $ICON_DARK_60_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-60x60@2x.png
-ln -s $ICON_DARK_60_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-60x60@3x.png
-ln -s $ICON_DARK_64_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-64x64@2x.png
-ln -s $ICON_DARK_64_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-64x64@3x.png
-ln -s $ICON_DARK_68_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-68x68@2x.png
-ln -s $ICON_DARK_76_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-76x76@2x.png
-ln -s $ICON_DARK_83_5_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-83.5x83.5@2x.png
-ln -s $ICON_DARK_1024_1x_PATH $DEST_DIR_PATH/Icon-App-Dark-1024x1024@1x.png
+if [ -f "$ICON_DARK_20_2x_PATH" ]; then
+    ln -s $ICON_DARK_20_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-20x20@2x.png
+fi
+if [ -f "$ICON_DARK_20_3x_PATH" ]; then
+    ln -s $ICON_DARK_20_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-20x20@3x.png
+fi
+if [ -f "$ICON_DARK_29_2x_PATH" ]; then
+    ln -s $ICON_DARK_29_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-29x29@2x.png
+fi
+if [ -f "$ICON_DARK_29_3x_PATH" ]; then
+    ln -s $ICON_DARK_29_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-29x29@3x.png
+fi
+if [ -f "$ICON_DARK_38_2x_PATH" ]; then
+    ln -s $ICON_DARK_38_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-38x38@2x.png
+fi
+if [ -f "$ICON_DARK_38_3x_PATH" ]; then
+    ln -s $ICON_DARK_38_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-38x38@3x.png
+fi
+if [ -f "$ICON_DARK_40_2x_PATH" ]; then
+    ln -s $ICON_DARK_40_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-40x40@2x.png
+fi
+if [ -f "$ICON_DARK_40_3x_PATH" ]; then
+    ln -s $ICON_DARK_40_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-40x40@3x.png
+fi
+if [ -f "$ICON_DARK_60_2x_PATH" ]; then
+    ln -s $ICON_DARK_60_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-60x60@2x.png
+fi
+if [ -f "$ICON_DARK_60_3x_PATH" ]; then
+    ln -s $ICON_DARK_60_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-60x60@3x.png
+fi
+if [ -f "$ICON_DARK_64_2x_PATH" ]; then
+    ln -s $ICON_DARK_64_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-64x64@2x.png
+fi
+if [ -f "$ICON_DARK_64_3x_PATH" ]; then
+    ln -s $ICON_DARK_64_3x_PATH $DEST_DIR_PATH/Icon-App-Dark-64x64@3x.png
+fi
+if [ -f "$ICON_DARK_68_2x_PATH" ]; then
+    ln -s $ICON_DARK_68_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-68x68@2x.png
+fi
+if [ -f "$ICON_DARK_76_2x_PATH" ]; then
+    ln -s $ICON_DARK_76_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-76x76@2x.png
+fi
+if [ -f "$ICON_DARK_83_5_2x_PATH" ]; then
+    ln -s $ICON_DARK_83_5_2x_PATH $DEST_DIR_PATH/Icon-App-Dark-83.5x83.5@2x.png
+fi
+if [ -f "$ICON_DARK_1024_1x_PATH" ]; then
+    ln -s $ICON_DARK_1024_1x_PATH $DEST_DIR_PATH/Icon-App-Dark-1024x1024@1x.png
+fi
 
-ln -s $ICON_TINTED_20_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-20x20@2x.png
-ln -s $ICON_TINTED_20_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-20x20@3x.png
-ln -s $ICON_TINTED_29_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-29x29@2x.png
-ln -s $ICON_TINTED_29_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-29x29@3x.png
-ln -s $ICON_TINTED_38_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-38x38@2x.png
-ln -s $ICON_TINTED_38_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-38x38@3x.png
-ln -s $ICON_TINTED_40_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-40x40@2x.png
-ln -s $ICON_TINTED_40_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-40x40@3x.png
-ln -s $ICON_TINTED_60_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-60x60@2x.png
-ln -s $ICON_TINTED_60_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-60x60@3x.png
-ln -s $ICON_TINTED_64_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-64x64@2x.png
-ln -s $ICON_TINTED_64_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-64x64@3x.png
-ln -s $ICON_TINTED_68_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-68x68@2x.png
-ln -s $ICON_TINTED_76_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-76x76@2x.png
-ln -s $ICON_TINTED_83_5_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-83.5x83.5@2x.png
-ln -s $ICON_TINTED_1024_1x_PATH $DEST_DIR_PATH/Icon-App-Tinted-1024x1024@1x.png
+if [ -f "$ICON_TINTED_20_2x_PATH" ]; then
+    ln -s $ICON_TINTED_20_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-20x20@2x.png
+fi
+if [ -f "$ICON_TINTED_20_3x_PATH" ]; then
+    ln -s $ICON_TINTED_20_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-20x20@3x.png
+fi
+if [ -f "$ICON_TINTED_29_2x_PATH" ]; then
+    ln -s $ICON_TINTED_29_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-29x29@2x.png
+fi
+if [ -f "$ICON_TINTED_29_3x_PATH" ]; then
+    ln -s $ICON_TINTED_29_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-29x29@3x.png
+fi
+if [ -f "$ICON_TINTED_38_2x_PATH" ]; then
+    ln -s $ICON_TINTED_38_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-38x38@2x.png
+fi
+if [ -f "$ICON_TINTED_38_3x_PATH" ]; then
+    ln -s $ICON_TINTED_38_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-38x38@3x.png
+fi
+if [ -f "$ICON_TINTED_40_2x_PATH" ]; then
+    ln -s $ICON_TINTED_40_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-40x40@2x.png
+fi
+if [ -f "$ICON_TINTED_40_3x_PATH" ]; then
+    ln -s $ICON_TINTED_40_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-40x40@3x.png
+fi
+if [ -f "$ICON_TINTED_60_2x_PATH" ]; then
+    ln -s $ICON_TINTED_60_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-60x60@2x.png
+fi
+if [ -f "$ICON_TINTED_60_3x_PATH" ]; then
+    ln -s $ICON_TINTED_60_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-60x60@3x.png
+fi
+if [ -f "$ICON_TINTED_64_2x_PATH" ]; then
+    ln -s $ICON_TINTED_64_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-64x64@2x.png
+fi
+if [ -f "$ICON_TINTED_64_3x_PATH" ]; then
+    ln -s $ICON_TINTED_64_3x_PATH $DEST_DIR_PATH/Icon-App-Tinted-64x64@3x.png
+fi
+if [ -f "$ICON_TINTED_68_2x_PATH" ]; then
+    ln -s $ICON_TINTED_68_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-68x68@2x.png
+fi
+if [ -f "$ICON_TINTED_76_2x_PATH" ]; then
+    ln -s $ICON_TINTED_76_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-76x76@2x.png
+fi
+if [ -f "$ICON_TINTED_83_5_2x_PATH" ]; then
+    ln -s $ICON_TINTED_83_5_2x_PATH $DEST_DIR_PATH/Icon-App-Tinted-83.5x83.5@2x.png
+fi
+if [ -f "$ICON_TINTED_1024_1x_PATH" ]; then
+    ln -s $ICON_TINTED_1024_1x_PATH $DEST_DIR_PATH/Icon-App-Tinted-1024x1024@1x.png
+fi
 
 fi
 

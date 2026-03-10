@@ -170,6 +170,7 @@ abstract class BitcoinWalletBase extends ElectrumWallet with Store {
       payjoinBox: payjoinBox,
     );
   }
+  
 
   static Future<BitcoinWallet> open({
     required String name,

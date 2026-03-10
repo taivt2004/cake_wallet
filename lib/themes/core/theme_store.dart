@@ -35,7 +35,7 @@ abstract class ThemeStoreBase with Store {
 
   @computed
   bool get isOled => _isOled;
-
+  
   @computed
   bool get hasCustomTheme => sharedPreferences.getInt(PreferencesKey.currentTheme) != null;
 

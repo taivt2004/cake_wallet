@@ -253,7 +253,6 @@ class ElectrumClient {
         return <String, dynamic>{};
       }).toList();
     }
-
     return null;
   }
 

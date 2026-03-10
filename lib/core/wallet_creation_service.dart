@@ -50,16 +50,16 @@ class WalletCreationService {
 
   Future<WalletBase> create(WalletCredentials credentials, {bool? isTestnet}) async {
     await checkIfExists(credentials.name);
-
+    
     if (credentials.password == null) {
       credentials.password = generateWalletPassword();
-    }
+    } 
     await keyService.saveWalletPassword(
         password: credentials.password!, walletName: credentials.name);
 
     if (_hasSeedPhraseLengthOption) {
       credentials.seedPhraseLength = settingsStore.seedPhraseLength.value;
-    }
+    } 
     final wallet = await _service!.create(credentials, isTestnet: isTestnet);
 
     if (wallet.type == WalletType.monero) {
@@ -98,7 +98,7 @@ class WalletCreationService {
 
   Future<WalletBase> restoreFromKeys(WalletCredentials credentials, {bool? isTestnet}) async {
     await checkIfExists(credentials.name);
-
+    
     if (credentials.password == null) {
       credentials.password = generateWalletPassword();
     }

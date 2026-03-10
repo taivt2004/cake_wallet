@@ -68,7 +68,7 @@ class BitcoinWalletService extends WalletService<
       network: network,
       encryptionFileUtils: encryptionFileUtilsFor(isDirect),
     );
-
+    
     await wallet.save();
     await wallet.init();
 

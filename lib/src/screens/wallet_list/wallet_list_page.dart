@@ -447,7 +447,7 @@ class WalletListBodyState extends State<WalletListBody> {
 
   Future<void> _loadWallet(WalletListItem wallet) async {
     if (_loadingWallet) return;
-
+  
     _loadingWallet = true;
 
     if (SettingsStoreBase.walletPasswordDirectInput) {

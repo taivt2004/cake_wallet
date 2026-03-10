@@ -230,7 +230,7 @@ abstract class ElectrumWalletBase
       .map((addr) => addr.getScriptHash(network))
       .toList();
 
-  String get xpub => accountHD.publicKey.toExtended;
+  String get xpub => accountHD.publicKey.toExtended; 
 
   @override
   String? get seed => _mnemonic;
@@ -1507,7 +1507,7 @@ abstract class ElectrumWalletBase
     if (size != null) {
       return feeAmountWithFeeRate(feeRate, 0, 0, size: size);
     }
-
+    
     int inputsCount = 0;
 
     if (amount != null) {

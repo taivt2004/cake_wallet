@@ -130,7 +130,7 @@ abstract class ZcashWalletBase
 
     final zcashBalance = balance[CryptoCurrency.zec];
     final availableBalance = zcashBalance?.confirmed ?? 0;
-
+    
     final recipients = <Recipient>[];
     int totalAmount = 0;
 

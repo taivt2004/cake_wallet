@@ -100,7 +100,7 @@ class WalletKeysData {
   final String? xPub;
   final String? scanSecret;
   final String? spendPubkey;
-
+  
   WalletKeysData({this.privateKey, this.mnemonic, this.altMnemonic, this.passphrase, this.xPub, this.scanSecret, this.spendPubkey});
 
   String toJSON() => jsonEncode({
